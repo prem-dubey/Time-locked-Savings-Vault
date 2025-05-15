@@ -1,16 +1,35 @@
 const hre = require("hardhat");
 
 async function main() {
-  console.log("Deploying Crowdfund contract...");
+  console.log("Deploying NFTMinter contract...");
 
   // Get the Contract Factory
-  const Crowdfund = await hre.ethers.getContractFactory("Crowdfund");
+  const NFTMinter = await hre.ethers.getContractFactory("NFTMinter");
+
+  // Contract constructor arguments
+  const name = "Core NFT Collection";
+  const symbol = "CNFT";
+  const maxSupply = 1000;
+  const mintPrice = hre.ethers.utils.parseEther("0.01"); // 0.01 ETH
+  const baseURI = "ipfs://YOUR_IPFS_CID/";
 
   // Deploy the contract
-  const crowdfund = await Crowdfund.deploy();
-  await crowdfund.deployed();
+  const nftMinter = await NFTMinter.deploy(
+    name,
+    symbol,
+    maxSupply,
+    mintPrice,
+    baseURI
+  );
+  await nftMinter.deployed();
 
-  console.log(`Crowdfund contract deployed to: ${crowdfund.address}`);
+  console.log(`NFTMinter contract deployed to: ${nftMinter.address}`);
+  console.log(`Contract parameters:`);
+  console.log(`- Name: ${name}`);
+  console.log(`- Symbol: ${symbol}`);
+  console.log(`- Max Supply: ${maxSupply}`);
+  console.log(`- Mint Price: ${hre.ethers.utils.formatEther(mintPrice)} ETH`);
+  console.log(`- Base URI: ${baseURI}`);
 }
 
 main()
