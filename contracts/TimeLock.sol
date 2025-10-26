@@ -16,7 +16,7 @@ contract TimeLock {
      * @dev Stores the deposited balance for each user.
      * The address maps to the amount of native currency (e.g., Ether, CORE) deposited.
      */
-    mapping(address => uint26) public balances;
+    mapping(address => uint256) public balances;
 
     /**
      * @dev Stores the unlock timestamp for each user's deposit.
@@ -44,10 +44,19 @@ contract TimeLock {
     event Withdrawal(address indexed user, uint256 amount);
 
     // =============================
-
-    // Functions will be added here
+    //          FUNCTIONS
+    // =============================
 
     constructor() {
         // Constructor logic (if any)
+    }
+
+    /**
+     * @dev Deposits funds into the contract and sets a lock time.
+     * @param _unlockTimestamp The future time (Unix timestamp) when
+     * funds can be withdrawn.
+     */
+    function deposit(uint256 _unlockTimestamp) public payable {
+        // Logic to check and record the deposit will be added here
     }
 }
