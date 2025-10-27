@@ -57,6 +57,17 @@ contract TimeLock {
      * funds can be withdrawn.
      */
     function deposit(uint256 _unlockTimestamp) public payable {
-        // Logic to check and record the deposit will be added here
+        // --- CHECKS ---
+        // 1. Ensure the user is sending some funds
+        require(msg.value > 0, "TimeLock: Must send > 0 currency");
+
+        // 2. Ensure the unlock time is in the future
+        require(_unlockTimestamp > block.timestamp, "TimeLock: Unlock time must be in the future");
+
+        // 3. Ensure the user doesn't already have a deposit
+        // This is a simplifying assumption for this basic contract.
+        require(balances[msg.sender] == 0, "TimeLock: Contract only supports one active deposit per user");
+
+        // Logic to record the deposit will be added here
     }
 }
