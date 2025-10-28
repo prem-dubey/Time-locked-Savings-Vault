@@ -68,6 +68,13 @@ contract TimeLock {
         // This is a simplifying assumption for this basic contract.
         require(balances[msg.sender] == 0, "TimeLock: Contract only supports one active deposit per user");
 
-        // Logic to record the deposit will be added here
+        // --- EFFECTS ---
+        // 1. Update the user's balance
+        balances[msg.sender] = msg.value;
+
+        // 2. Store the user's unlock time
+        unlockTimestamps[msg.sender] = _unlockTimestamp;
+
+        // Emit event will be added here
     }
 }
