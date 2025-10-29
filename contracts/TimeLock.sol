@@ -75,6 +75,8 @@ contract TimeLock {
         // 2. Store the user's unlock time
         unlockTimestamps[msg.sender] = _unlockTimestamp;
 
-        // Emit event will be added here
+        // --- INTERACTIONS ---
+        // 1. Emit the event
+        emit Deposit(msg.sender, msg.value, _unlockTimestamp);
     }
 }
