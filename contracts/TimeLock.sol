@@ -79,4 +79,12 @@ contract TimeLock {
         // 1. Emit the event
         emit Deposit(msg.sender, msg.value, _unlockTimestamp);
     }
+
+    /**
+     * @dev Allows the user to withdraw their deposited funds
+     * after the lock time has expired.
+     */
+    function withdraw() public {
+        // Logic for withdrawal will be added in future commits
+    }
 }
